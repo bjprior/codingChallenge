@@ -7,11 +7,10 @@ terms = {0: 'zero', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five',
          30: 'thirty', 40: 'forty', 50: 'fifty', 60: 'sixty',
          70: 'seventy', 80: 'eighty', 90: 'ninety'}
 
-# Thousands
 thousands = {1000: 'thousand', 1000000: 'million', 1000000000: 'billion', 1000000000000: 'trillion',
              1000000000000000: 'quadrillion'}
 
-MaxNumber = 999999999999999999
+MAXINTEGER = 999999999999999999
 
 
 class Number:
@@ -20,6 +19,10 @@ class Number:
         self.wholeInt = self._parseInt()
 
     def print(self):
+        """
+        this function prints number in English text
+        :return: No return value
+        """
         string = self._integerToEnglish(self.wholeInt)
         string = self._placeAnd(string)
         print(string)
@@ -56,7 +59,7 @@ class Number:
     def _integerToEnglish(self, num):
         if isinstance(num, str):
             return "number invalid"
-        elif num > MaxNumber:
+        elif num > MAXINTEGER:
             return "number too large"
         else:
             assert (num >= 0)
