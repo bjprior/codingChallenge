@@ -15,6 +15,7 @@ MAXINTEGER = 999999999999999999
 
 class Number:
     def __init__(self, text):
+        # Cut off full stop, assumption in README
         self.raw = text[:-1]
         self.wholeInt = self._parseInt()
 
@@ -30,8 +31,6 @@ class Number:
     def _parseInt(self):
         number = ""
         counter = 0
-
-        # Cut off full stop, assumption in README
 
         # Collect all integers in string provided they are not proceeded by a non whitespace or integer (part 1)
         for char in self.raw:
