@@ -15,7 +15,7 @@ MAXINTEGER = 999999999999999999
 
 class Number:
     def __init__(self, text):
-        self.raw = text
+        self.raw = text[:-1]
         self.wholeInt = self._parseInt()
 
     def print(self):
@@ -24,12 +24,14 @@ class Number:
         :return: No return value
         """
         string = self._integerToEnglish(self.wholeInt)
-        string = self._placeAnd(string)
+        string = placeAnd(string)
         print(string)
 
     def _parseInt(self):
         number = ""
         counter = 0
+
+        # Cut off full stop, assumption in README
 
         # Collect all integers in string provided they are not proceeded by a non whitespace or integer (part 1)
         for char in self.raw:
@@ -84,18 +86,25 @@ class Number:
                     if num % thou == 0:
                         return self._integerToEnglish(num // thou) + ' ' + thousands[thou]
                     else:
-                        return self._integerToEnglish(num // thou) + ' ' + thousands[thou] + ', ' + self._integerToEnglish(
+                        return self._integerToEnglish(num // thou) + ' ' + thousands[
+                            thou] + ', ' + self._integerToEnglish(
                             num % thou)
 
-    def _placeAnd(self, string):
-        comma = ','
-        strAnd = 'and'
-        lastComma = string.rfind(comma)
-        lastAnd = string.rfind(strAnd)
 
-        if lastComma < 0:
-            return string
-        if lastAnd > lastComma:
-            return string
-        else:
-            return string[0:lastComma] + ' and' + string[lastComma + 1:]
+def placeAnd(string):
+    """
+    This function ensures the 'and' is placed correctly
+    :param string
+    :return: string with the and in correct place
+    """
+    comma = ','
+    strAnd = 'and'
+    lastComma = string.rfind(comma)
+    lastAnd = string.rfind(strAnd)
+
+    if lastComma < 0:
+        return string
+    if lastAnd > lastComma:
+        return string
+    else:
+        return string[0:lastComma] + ' and' + string[lastComma + 1:]
