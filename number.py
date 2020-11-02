@@ -66,16 +66,16 @@ class Number:
         else:
             assert (num >= 0)
 
-            if (num < 20):
+            if num < 20:
                 return terms[num]
 
-            if (num < 100):
+            if num < 100:
                 if num % 10 == 0:
                     return terms[num]
                 else:
                     return terms[num // 10 * 10] + '-' + terms[num % 10]
 
-            if (num < 1000):
+            if num < 1000:
                 if num % 100 == 0:
                     return terms[num // 100] + ' hundred'
                 else:
